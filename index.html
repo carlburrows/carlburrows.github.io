@@ -9,18 +9,25 @@
 	</head>
 	<body>
 		<h1>NatTim</h1>
-		<textarea></textarea>
-		<button type="button">Translate</button>
-		<p class="hyphenate">napanoch is the best place poughkeepsie vassar college brewers rule</p>
+		<textarea id="text-input"></textarea>
+		<button type="button" onclick="addAndHyphenate()">Translate</button>
+		<p id="display-area" class="hyphenate">napanoch is the best place poughkeepsie vassar college brewers rule</p>
 	</body>
-	<script src="./hyphenate.js" type="text/javascript">
+	<script src="./hyphenate.js" type="text/javascript"></script>
 	<script type="text/javascript">
     var hyphenatorSettings = {
         hyphenchar :        '|',
         urlhyphenchar :     '|'
     };
     Hyphenator.config(hyphenatorSettings);
-    Hyphenator.run();
-</script>
+    
+    var input = getElementById("text-input");
+    var output = getElementById("display-area");
+
+    function addAndHyphenate() {
+    	output.innerText = input.value
+    	Hyphenator.run();
+    }
 	</script>
+
 </html>
