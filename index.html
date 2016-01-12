@@ -7,7 +7,7 @@
 			}
 
 			#display-area {
-				visibility: hidden;
+				
 			}
 
 		</style>
@@ -41,7 +41,7 @@
     }
 
     function doWord(word) {
-    	var syllables = word[i].split("*");
+    	var syllables = word.split("*");
     	for(var j=0; j<syllables.length; j++) {
     		returnWord += doSyllable(syllables[j]);
     	}
