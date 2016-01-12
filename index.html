@@ -33,9 +33,19 @@
 
     function doSyllable(syl) {
     	x = (Math.floor(Math.random() * 2) == 0);
-    	if(x){
+    	if(syl[0]=='n' || syl[0]=='m') {
     		return "nat";
-    	}else{
+    	} else if(syl[0]=='t') {
+    		return "tim"
+    	} else if(syl.indexOf("a") > -1) { 
+    		return "nat";
+    	} else if(syl.indexOf("i") > -1) { 
+    		return "tim";
+    	} else if(syl.indexOf("e") > -1) { 
+    		return "tim";
+    	} else if(x){
+    		return "nat";
+    	} else{
         	return "tim";
     	}
     }
