@@ -2,22 +2,86 @@
 <html lang="en">
 	<head>
 		<style>
-			body {
-				margin:50px;
-			}
+			a {
+			text-decoration: none;
+		}
 
-			#display-area {
-				font-size:0pt;
-			}
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+			background: #ffe6eb;
+		}
+
+		.fixed-width-container {
+			margin: 20px auto 18px auto;
+			width: 400px;
+		}
+
+		h1, h2 {
+			font-size: 30px;
+			font-weight: 500;
+			text-align: center;
+			color: #4E2B99;
+		}
+
+		h1 a, h2 a {
+			text-decoration: underline;
+			color: #4E2B99;
+		}
+
+		h1 {
+			padding: 10px 10px 30px 10px;
+		}
+
+		h2 {
+			font-size:14pt;
+			font-weight:400;
+			padding: 20px 20px 10px 10px;
+		}
+
+		#display-area {
+			font-size:0pt;
+		}
+
+		button {
+			width:30%;
+			padding:5px;
+			font-size:12pt;
+			font-weight:400;
+			margin-top:10px;
+		}
+
+		.center {
+			text-align: center;
+		}
+
+		.small {
+			font-size:14pt;
+			font-weight:300;
+		}
+
+		#text-input {
+			width:100%;
+			height:150px;
+			font-size:14pt;
+		}
+
+		#text-output {
+			font-size:14pt;
+		}
 
 		</style>
 	</head>
 	<body>
-		<h1>NatTim</h1>
+	<div class="fixed-width-container">
+		<h1>"NatTim" Generator <span class="small"><br>("NatTim" Nattimnattim)</span></h1>
+		<h2>Type normal words here, then hit translate</h2>
 		<textarea id="text-input"></textarea>
-		<button type="button" onclick="addAndHyphenate()">Translate</button>
+		<div class="center"><button type="button" onclick="addAndHyphenate()">Translate</button></div>
 		<p id="display-area" class="hyphenate"></p>
 		<p id="text-output"></p>
+	</div>
 	</body>
 	<script src="./hyphenate.js" type="text/javascript"></script>
 	<script type="text/javascript">
@@ -32,28 +96,53 @@
     var output = document.getElementById("text-output");
 
     function doSyllable(syl) {
+    	var upper = false;
+    	if(syl[0] == syl[0].toUpperCase()) {
+    		upper = true;
+    	}
+    	var returnVal = "nat";
     	x = (Math.floor(Math.random() * 2) == 0);
-    	if(syl[0]=='n' || syl[0]=='m') {
-    		return "nat";
-    	} else if(syl[0]=='t') {
-    		return "tim"
+    	if(syl[0]=='n' || syl[0]=='m' || syl[0]=='N' || syl[0]=='M') {
+    		returnVal = "nat";
+    	} else if(syl[0]=='t' || syl[0]=='T') {
+    		returnVal = "tim"
     	} else if(syl.indexOf("a") > -1) { 
-    		return "nat";
+    		returnVal =  "nat";
     	} else if(syl.indexOf("i") > -1) { 
-    		return "tim";
+    		returnVal =  "tim";
 		} else if(x){
-    		return "nat";
+    		returnVal =  "nat";
     	} else{
-        	return "tim";
+        	returnVal =  "tim";
+    	}
+
+    	if(upper) {
+    		console.log(returnVal.substring(0,1) + " " + returnVal.substring(1))
+    		return returnVal.substring(0,1).toUpperCase() + returnVal.substring(1);
+    	} else {
+    		return returnVal;
     	}
     }
 
     function doWord(word) {
-    	if(word=="na*panoch" || word=="Na*panoch" || word=="na*talie" || word=="Na*talie") {
+    	if(word=="na*panoch" || word=="na*talie") {
     		return "nattimnat";
+    	}
+
+    	if(word=="Na*panoch" || word=="Na*talie") {
+    		return "Nattimnat";
+    	}
+
+    	if(word=="hello" || word=="baby") {
+    		return "nattim"
+    	}
+
+    	if(word=="Hello") {
+    		return "Nattim"
     	}
     	var syllables = word.split("*");
     	var returnWord = "";
+
     	for(var j=0; j<syllables.length; j++) {
     		returnWord += doSyllable(syllables[j]);
     	}
