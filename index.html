@@ -42,10 +42,11 @@
 
     function doWord(word) {
     	var syllables = word.split("*");
+    	var returnWord = "";
     	for(var j=0; j<syllables.length; j++) {
     		returnWord += doSyllable(syllables[j]);
     	}
-
+    	console.log("word: " + returnWord);
     	return returnWord;
     }
 
