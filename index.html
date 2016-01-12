@@ -16,10 +16,10 @@
 	<script src="./hyphenate.js" type="text/javascript"></script>
 	<script type="text/javascript">
     var hyphenatorSettings = {
-        hyphenchar :        '*',
-        minwordlength :     '4'
+        hyphenchar :        '*'
     };
     Hyphenator.config(hyphenatorSettings);
+    Hyphenator.config({minwordlength : 2});
     
     var input = document.getElementById("text-input");
     var output = document.getElementById("display-area");
