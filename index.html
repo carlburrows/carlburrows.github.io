@@ -19,7 +19,7 @@
         hyphenchar :        '*'
     };
     Hyphenator.config(hyphenatorSettings);
-    Hyphenator.config({minwordlength : 2});
+    Hyphenator.config({minwordlength : 1});
     
     var input = document.getElementById("text-input");
     var output = document.getElementById("display-area");
@@ -27,6 +27,7 @@
     function addAndHyphenate() {
     	output.innerText = input.value
     	Hyphenator.run();
+    	console.log(output.innerText)
     }
 	</script>
 
