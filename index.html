@@ -49,6 +49,9 @@
     }
 
     function doWord(word) {
+    	if(word=="napanoch" || "Napanoch" || "natalie" || "Natalie") {
+    		return "nattimnat";
+    	}
     	var syllables = word.split("*");
     	var returnWord = "";
     	for(var j=0; j<syllables.length; j++) {
