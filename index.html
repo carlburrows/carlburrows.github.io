@@ -5,13 +5,19 @@
 			body {
 				margin:50px;
 			}
+
+			#display-area {
+				visibility: hidden;
+			}
+
 		</style>
 	</head>
 	<body>
 		<h1>NatTim</h1>
 		<textarea id="text-input"></textarea>
 		<button type="button" onclick="addAndHyphenate()">Translate</button>
-		<p id="display-area" class="hyphenate">napanoch is the best place poughkeepsie vassar college brewers rule</p>
+		<p id="display-area" class="hyphenate"></p>
+		<p id="text-output"></p>
 	</body>
 	<script src="./hyphenate.js" type="text/javascript"></script>
 	<script type="text/javascript">
@@ -19,15 +25,45 @@
         hyphenchar :        '*'
     };
     Hyphenator.config(hyphenatorSettings);
-    Hyphenator.config({minwordlength : 12});
+    Hyphenator.config({minwordlength : 1});
     
     var input = document.getElementById("text-input");
-    var output = document.getElementById("display-area");
+    var middle = document.getElementById("display-area");
+    var output = document.getElementById("text-output");
+
+    function doSyllable(syl) {
+    	x = (Math.floor(Math.random() * 2) == 0);
+    	if(x){
+    		return "nat";
+    	}else{
+        	return "tim";
+    	}
+    }
+
+    function doWord(word) {
+    	var syllables = word[i].split("*");
+    	for(var j=0; j<syllables.length; j++) {
+    		returnWord += doSyllable(syllables[j]);
+    	}
+
+    	return returnWord;
+    }
+
+    function natTimize(str) {
+    	var words = str.split(" ");
+    	var returnStr = "";
+    	for(var i=0; i<words.length; i++) {
+    		returnStr += doWord(words[i]) + " ";
+    	}
+
+    	return returnStr;
+    }
 
     function addAndHyphenate() {
-    	output.innerText = input.value
+    	middle.innerText = input.value
     	Hyphenator.run();
-    	console.log(output.innerText)
+    	console.log(middle.innerText)
+    	output.innerText = natTimize(middle.innerText);
     }
 	</script>
 
