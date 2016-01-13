@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<style>
 			a {
@@ -8,8 +9,8 @@
 		}
 
 		body {
-			margin: 0;
-			padding: 0;
+			margin: 10px;
+			padding: 10px;
 			font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
 			/*background: #ffe6eb;*/
 			/* Generated with http://gradient.quasi.ink */
@@ -65,13 +66,14 @@
 		}
 
 		#text-input {
-			width:96%;
-			height:80px;
+			width:94%;
+			height:60px;
 			padding:10px;
 			background-color:#faf8f0;
 			font-size:14pt;
 			resize:none;
-			border:2px dashed #1c1d1e;
+			vertical-align: middle;
+			border:2px solid #c45f47;
 		}
 
 		#text-output {
@@ -86,9 +88,8 @@
 	<body>
 	<div class="fixed-width-container">
 		<h1>"NatTim" Translator <span class="small"><br>("NatTim" Timnattim)</span></h1>
-		<h2>Type normal words here, then hit translate</h2>
-		<textarea id="text-input"></textarea>
-		<div class="center"><button type="button" onclick="addAndHyphenate()">=</button></div>
+		<textarea id="text-input" placeholder="Type here"></textarea>
+		<div class="center"><button type="button" onclick="addAndHyphenate()" class="pure-button">=</button></div>
 		<p id="display-area" class="hyphenate"></p>
 		<p id="text-output"></p>
 	</div>
